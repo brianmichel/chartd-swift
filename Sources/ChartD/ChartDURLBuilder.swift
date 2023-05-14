@@ -1,36 +1,8 @@
 import Foundation
 
-struct ChartDDataset {
-    /// A base62 encoded string representing the data in this series.
-    /// Use the functions found in ``Collection+Base62`` to generate these values.
-    let data: String
-    /// An optional encoded string representing the stroke color.
-    let stroke: String? = nil
-    /// An optional encoded string representing the fill color.
-    let fill: String? = nil
-}
-
 enum ChartDURLBuilderError: Error {
     /// An error indicating more than 5 datasets have been passed to the builder.
     case tooManyDatasets
-}
-
-/// The image type of the resulting chart.
-enum ChartDImageType {
-    /// When used, a png of the chart will be built.
-    case png
-    /// When used, an svg of the chart will be built.
-    case svg
-
-    /// The file name as a string for the chart.
-    var fileName: String {
-        switch self {
-        case .png:
-            return "a.png"
-        case .svg:
-            return "a.svg"
-        }
-    }
 }
 
 /// A class that allows you to contruct a ChartD chart using a builder pattern.
@@ -189,11 +161,11 @@ final class ChartDURLBuilder {
         for (i, dataset) in datasets.enumerated() {
             dataItems.append(.init(name: "d\(i)", value: dataset.data))
 
-            if let fill = dataset.fill {
+            if let fill = dataset.fill?.encoded() {
                 dataItems.append(.init(name: "f\(i)", value: fill))
             }
 
-            if let stroke = dataset.stroke {
+            if let stroke = dataset.stroke?.encoded() {
                 dataItems.append(.init(name: "s\(i)", value: stroke))
             }
         }

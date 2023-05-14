@@ -36,9 +36,9 @@ final class ChartDURLBuilderTests: XCTestCase {
             .width(300)
             .height(300)
             .datasets([
-                .init(data: "98851"),
-                .init(data: "98852"),
-                .init(data: "98853"),
+                .init(data: "92851", stroke: .init(hex: "E6AABBFF"), fill: .init(hex: "E6AA1155")),
+                .init(data: "5F322", stroke: .init(hex: "E6AAAAFF", type: .dotted), fill: .init(hex: "E6AAAA55")),
+                .init(data: "23593", stroke: .init(hex: "AAE6C8FF", type: .dashed), fill: .init(hex: "AAE6C855")),
             ])
             .yMinimum(0.0)
             .yMaximum(1.0)
@@ -49,7 +49,7 @@ final class ChartDURLBuilderTests: XCTestCase {
             .step(true)
             .highlightLastPoint(true)
             .onlyLeftYAxis(true)
-            .onlyRightYAxis(true)
+            .onlyRightYAxis(false)
             .url()
 
         XCTAssertNotNil(url, "URL should still be non-nil after specifying all available properties.")
