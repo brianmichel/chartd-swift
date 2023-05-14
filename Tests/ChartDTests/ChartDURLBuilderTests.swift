@@ -74,7 +74,7 @@ final class ChartDURLBuilderTests: XCTestCase {
             .onlyRightYAxis(true)
             .url()
 
-        let expected = try XCTUnwrap(URL(string: "https://chartd.co/a.svg?h=300&w=300&d0=98851&d1=98852&d2=98853&ymin=0.0&ymax=1.0&tz=America/New_York&t=A%20Test%20Chart&step=true&hl=true&ol=true&or=true"))
+        let expected = try XCTUnwrap(URL(string: "https://www.chartd.co/a.svg?h=300&w=300&d0=98851&d1=98852&d2=98853&ymin=0.0&ymax=1.0&tz=America/New_York&t=A%20Test%20Chart&step=true&hl=true&ol=true&or=true"))
 
         XCTAssertEqual(url, expected, "The output url should equal the expected value which is a valid chart.")
     }

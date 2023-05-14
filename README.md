@@ -1,6 +1,6 @@
 # chartd-swift
 
-A small library to easily construct URLs for [ChartD](https://chartd.co)
+A small library to easily construct URLs for [ChartD](https://www.chartd.co)
 
 This service lets you construct simple graphs as images to easily send them around in places where it might not be convenient to upload a file to.
 

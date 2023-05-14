@@ -170,7 +170,7 @@ final class ChartDURLBuilder {
             }
         }
 
-        var components = URLComponents(string: "https://chartd.co/\(type.fileName)")
+        var components = URLComponents(string: "https://www.chartd.co/\(type.fileName)")
         var queryItems: [URLQueryItem] = [
             .init(name: "h", value: String(height)),
             .init(name: "w", value: String(width)),
