@@ -15,3 +15,16 @@ Instantiate a builder, and add the properties you would like to help define your
 - at least 1 dataset (but no more than 5)
 
 After you've configured the builder, simply call `.url()`, optionally you can specify if you want a PNG or SVG version of your chart in this call as well.
+
+Here's a complete example:
+
+```swift
+let url = try ChartDURLBuilder()
+    .height(200)
+    .width(400)
+    .datasets([
+        .init(data: "98851"), // pass in a pre-encoded string for your data
+        .init(data: [0.1, 0.0, 0.8, 0.9].base62encode(minimum: 0.0, maximum: 1.0)) // or, encode the data on the fly.
+     ])
+     .url()
+```
