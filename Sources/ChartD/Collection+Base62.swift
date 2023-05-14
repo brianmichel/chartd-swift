@@ -7,7 +7,7 @@ extension Collection where Element == Double {
     /// - parameter minimum: The minimum value that should be used when calculating where values are in the encoded set.
     /// - parameter maximum: The maximum value that should be used when calculating where values are in the encoded set.
     /// - returns: A new string to represent the passed data in base62 encoding.
-    func base62encode(with minimum: Element, maximum: Element) -> String {
+    func base62encode(minimum: Element, maximum: Element) -> String {
         let range = maximum - minimum
         var output = [Character](repeating: base62.first!, count: count)
         if range == 0 {
