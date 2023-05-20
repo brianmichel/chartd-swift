@@ -5,18 +5,33 @@ name: Swift
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
+    paths:
+      - "**.swift"
+      - "**.yml"
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
+    paths:
+      - "**.swift"
+      - "**.yml"
+  workflow_dispatch:
 
 jobs:
-  build:
-
+  masOS:
     runs-on: macos-latest
-
     steps:
-    - uses: actions/checkout@v3
-    - name: Build
-      run: swift build -v
-    - name: Run tests
-      run: swift test -v
+      - uses: actions/checkout@v3
+      - name: Build
+        run: swift build -v
+      - name: Run tests
+        run: swift test -v --enable-code-coverage
+      - name: Convert coverage files
+        run: |
+          xcrun llvm-cov export -format "lcov" \
+          .build/debug/ChartDPackageTests.xctest/Contents/MacOS/ChartDPackageTests \
+          -ignore-filename-regex="\/Tests\/" \
+          -instr-profile=.build/debug/codecov/default.profdata > info.lcov
+      - name: Upload to codecov.io
+        uses: codecov/codecov-action@v3
+        with:
+          file: info.lcov
